@@ -1,5 +1,7 @@
 package service;
 
+import exception.PlayerNotFoundException;
+import exception.TeamNotFoundException;
 import model.Player;
 import model.Team;
 
@@ -9,4 +11,42 @@ public class NbaAnalytics {
     private List<Player> players;
     private List<Team> teams;
 
+
+    // TODO Saguilot - Change "p.toString()" to "p.getPosition()".
+    public List<Player> getPlayersByPosition(String position) {
+        return players.stream()
+                .filter(p -> p.toString().equalsIgnoreCase(position))
+                .toList();
+    }
+
+    // TODO Saguilot
+    public List<Player> getPlayersByTeam(String team) {
+        return null;
+    }
+
+    // TODO Saguilot
+    public List<Player> getPlayersByAge(byte age) {
+        return null;
+    }
+
+    // TODO Saguilot
+    public List<Player> getPlayersByScoreRange(int maxScore, int minScore) {
+        return null;
+    }
+
+    // TODO Saguilot - Change "p.toString()" to "p.getName()".
+    public Player getPlayerByName(String playerName) throws PlayerNotFoundException {
+        return players.stream()
+                .filter(p -> p.toString().equalsIgnoreCase(playerName))
+                .findFirst()
+                .orElseThrow(() -> new PlayerNotFoundException("Player \"" + playerName + "\" is not on the record"));
+    }
+
+    // TODO Saguilot - Change "t.toString()" to "t.getName()".
+    public Team getTeamByName(String teamName) throws TeamNotFoundException {
+        return teams.stream()
+                .filter(t -> t.toString().equalsIgnoreCase(teamName))
+                .findFirst()
+                .orElseThrow(() -> new TeamNotFoundException("Team \"" + teamName + "\" is not on the record"));
+    }
 }
