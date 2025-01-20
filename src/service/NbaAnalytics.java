@@ -8,6 +8,32 @@ import model.Team;
 import java.util.List;
 
 public class NbaAnalytics {
+    
+    public static void readData(String filename) {
+        BufferedReader reader = null;
+        String line = "";
+        try {
+            reader = new BufferedReader(new FileReader(filename));
+            while ((line = reader.readLine()) != null) {
+                String[] row = line.split(",");
+                for (String i : row) {
+                    System.out.printf("%-25s", i);
+                }
+                System.out.println();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
     private List<Player> players;
     private List<Team> teams;
 
