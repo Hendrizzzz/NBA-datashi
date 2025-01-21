@@ -14,9 +14,19 @@ public class InputReader {
 
     }
 
+    public static int readInteger() {
+        while (true)
+            try {
+                return Integer.parseInt(INPUT_READER.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input: Please enter a valid number. Try again. ");
+            } catch (IOException e) {
+                System.out.println("Error: An unexpected issue occurred while reading your input. Please try again.");
+            }
+    }
 
 
-    public static int readInteger(int min, int max) {
+    public static int readIntegerInRange(int min, int max) {
         while (true)
             try {
                 int choice = Integer.parseInt(INPUT_READER.readLine());
@@ -34,7 +44,7 @@ public class InputReader {
 
 
 
-    public static String readStringChoice(int numberOfChoicesFromSmallLetterA) {
+    public static String readStringFromMenuChoice(int numberOfChoicesFromSmallLetterA) {
         while (true)
             try {
                 System.out.print("Enter a choice between 'a' and " + (char) ('a' + numberOfChoicesFromSmallLetterA - 1) + ": ");

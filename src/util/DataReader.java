@@ -1,12 +1,26 @@
 package util;
 
+import service.PlayerService;
+import service.TeamService;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class DataReader {
 
-    public static void readData(String filename) {
+
+    /*
+
+        List<Player> players = new ArrayList<>();
+        playerService.setPlayers(players);
+
+        List<Team> teams = new ArrayList<>();
+        playerService.setTeams(teams);
+
+     */
+
+    public static void readData(String filename, PlayerService playerService, TeamService teamService) {
         BufferedReader reader = null;
         String line = "";
         try {
