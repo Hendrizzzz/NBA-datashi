@@ -42,44 +42,51 @@ public class NbaAnalytics {
         }
     }
 
-    // TODO Saguilot - Change "p.toString()" to "p.getPosition()".
+    // Filtering Methods
     public List<Player> getPlayersByPosition(String position) {
         return players.stream()
-                .filter(p -> p.toString().equalsIgnoreCase(position))
+                .filter(p -> p.getPosition().equalsIgnoreCase(position))
                 .toList();
     }
 
-    // TODO Saguilot
-    public List<Player> getPlayersByTeam(String team) {
-        return null;
+    public List<Player> getPlayersByTeam(String team) throws TeamNotFoundException {
+        for (Team t : teams)
+            if (t.getName().equalsIgnoreCase(team)) return t.getPlayers();
+
+        throw new TeamNotFoundException("Team \"" + team + "\" is not on the record");
     }
 
-    // TODO Saguilot
-    public List<Player> getPlayersByAge(byte age) {
-        return null;
+    public List<Player> getPlayersByAge(int age) {
+        return players.stream()
+                .filter(p -> p.getAge() == age)
+                .toList();
     }
 
-    // TODO Saguilot
     public List<Player> getPlayersByScoreRange(int maxScore, int minScore) {
-        return null;
+        return players.stream()
+                .filter(p -> {
+                    double totalScore = p.getGamesPlayed() * p.getPpg();
+                    return totalScore >= minScore && totalScore <= maxScore;
+                })
+                .toList();
     }
 
-    // TODO Saguilot - Change "p.toString()" to "p.getName()".
+    // Searching Methods
     public Player getPlayerByName(String playerName) throws PlayerNotFoundException {
         return players.stream()
-                .filter(p -> p.toString().equalsIgnoreCase(playerName))
+                .filter(p -> p.getName().equalsIgnoreCase(playerName))
                 .findFirst()
                 .orElseThrow(() -> new PlayerNotFoundException("Player \"" + playerName + "\" is not on the record"));
     }
 
-    // TODO Saguilot - Change "t.toString()" to "t.getName()".
     public Team getTeamByName(String teamName) throws TeamNotFoundException {
         return teams.stream()
-                .filter(t -> t.toString().equalsIgnoreCase(teamName))
+                .filter(t -> t.getName().equalsIgnoreCase(teamName))
                 .findFirst()
                 .orElseThrow(() -> new TeamNotFoundException("Team \"" + teamName + "\" is not on the record"));
     }
 
+    // Sorting Methods
     public List<Player> sortPlayersByPPG(boolean isAscending) {
         return players.stream()
                 .sorted(isAscending ? Comparator.comparingDouble(Player::getPpg)
