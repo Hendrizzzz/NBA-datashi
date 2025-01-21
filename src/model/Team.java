@@ -11,6 +11,10 @@ public class Team {
     private double spg;
     private double tpg;
 
+    public Team(String teamName) {
+        this.name = teamName;
+    }
+
     public String getName() {
         return name;
     }
