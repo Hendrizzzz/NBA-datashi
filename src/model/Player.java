@@ -1,5 +1,7 @@
 package model;
 
+import java.text.SimpleDateFormat;
+
 public class Player {
    private String name;
     private int salary;
@@ -49,6 +51,34 @@ public class Player {
         return playerEfficiencyRating;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public double getPpg() {
+        return ppg;
+    }
+
+    public double getRpg() {
+        return rpg;
+    }
+
+    public double getApg() {
+        return apg;
+    }
+
+    public double getSpg() {
+        return spg;
+    }
+
+    public double getBpg() {
+        return bpg;
+    }
+
+    public double getTpg() {
+        return tpg;
+    }
+
     public void setSalary(int salary) {
         this.salary = salary;
     }
@@ -79,6 +109,34 @@ public class Player {
 
     public void setPlayerEfficiencyRating(double playerEfficiencyRating) {
         this.playerEfficiencyRating = playerEfficiencyRating;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPpg(double ppg) {
+        this.ppg = ppg;
+    }
+
+    public void setRpg(double rpg) {
+        this.rpg = rpg;
+    }
+
+    public void setApg(double apg) {
+        this.apg = apg;
+    }
+
+    public void setSpg(double spg) {
+        this.spg = spg;
+    }
+
+    public void setBpg(double bpg) {
+        this.bpg = bpg;
+    }
+
+    public void setTpg(double tpg) {
+        this.tpg = tpg;
     }
 }
 

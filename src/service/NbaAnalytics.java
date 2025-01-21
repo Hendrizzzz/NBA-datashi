@@ -1,15 +1,22 @@
 package service;
 
+import app.MainCLI;
 import exception.PlayerNotFoundException;
 import exception.TeamNotFoundException;
 import model.Player;
 import model.Team;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NbaAnalytics {
-    public class NbaAnalytics {
-        
+    private List<Player> players;
+    private List<Team> teams;
+
     public static void readData(String filename) {
         BufferedReader reader = null;
         String line = "";
@@ -34,10 +41,6 @@ public class NbaAnalytics {
             }
         }
     }
-        
-    private List<Player> players;
-    private List<Team> teams;
-
 
     // TODO Saguilot - Change "p.toString()" to "p.getPosition()".
     public List<Player> getPlayersByPosition(String position) {
@@ -75,5 +78,47 @@ public class NbaAnalytics {
                 .filter(t -> t.toString().equalsIgnoreCase(teamName))
                 .findFirst()
                 .orElseThrow(() -> new TeamNotFoundException("Team \"" + teamName + "\" is not on the record"));
+    }
+
+    public List<Player> sortPlayersByPPG(boolean isAscending) {
+        return players.stream()
+                .sorted(isAscending ? Comparator.comparingDouble(Player::getPpg)
+                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                .toList();
+    }
+
+    public List<Player> sortPlayersByAPG(boolean isAscending) {
+        return players.stream()
+                .sorted(isAscending ? Comparator.comparingDouble(Player::getApg)
+                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                .toList();
+    }
+
+    public List<Player> sortPlayersByRPG(boolean isAscending) {
+        return players.stream()
+                .sorted(isAscending ? Comparator.comparingDouble(Player::getRpg)
+                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                .toList();
+    }
+
+    public List<Player> sortPlayersBySPG(boolean isAscending) {
+        return players.stream()
+                .sorted(isAscending ? Comparator.comparingDouble(Player::getSpg)
+                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                .toList();
+    }
+
+    public List<Player> sortPlayersByBPG(boolean isAscending) {
+        return players.stream()
+                .sorted(isAscending ? Comparator.comparingDouble(Player::getBpg)
+                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                .toList();
+    }
+
+    public List<Player> sortPlayersByTPG(boolean isAscending) {
+        return players.stream()
+                .sorted(isAscending ? Comparator.comparingDouble(Player::getTpg)
+                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                .toList();
     }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Team {
     private String name;
     List<Player> players;
@@ -64,5 +66,4 @@ public class Team {
     public void setTpg(double tpg) {
         this.tpg = tpg;
     }
-}
 }
