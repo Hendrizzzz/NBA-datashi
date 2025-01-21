@@ -19,6 +19,11 @@ public class Player {
     private int totalMinutesPlayed;
     private double playerEfficiencyRating;
 
+   public Player(String playerName, Team team) {
+        this.name = playerName;
+        this.team = team;
+    }
+
     public int getSalary() {
         return salary;
     }
