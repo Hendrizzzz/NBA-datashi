@@ -27,6 +27,18 @@ public class DataReader {
             reader = new BufferedReader(new FileReader(filename));
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(",");
+                String playerName = row[0];
+                String teamName = row[5];
+
+                // Find or create Team object
+                Team team = TeamBuilder(teamName);
+
+                // Create Player object and link to Team
+                Player player = new Player(playerName, team);
+                team.addPlayer(player);
+                players.add(player);
+            }
+            //Displays entire dataset
                 for (String index : row) {
                     System.out.printf("%-25s", index);
                 }
@@ -45,5 +57,16 @@ public class DataReader {
         }
     }
 
+    private Team TeamBuilder(String teamName) {
+        for (Team team : teams) {
+            if (team.getName().equals(teamName)) {
+                return team;
+            }
+        }
+        // If the team is not found, create a new Team object
+        Team newTeam = new Team(teamName);
+        teams.add(newTeam);
+        return newTeam;
+    }
 
 }
