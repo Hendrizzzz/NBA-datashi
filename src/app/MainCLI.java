@@ -3,6 +3,7 @@ package app;
 import controller.MenuController;
 import service.PlayerService;
 import service.TeamService;
+import util.AppPrompter;
 import util.InputReader;
 
 
@@ -16,13 +17,13 @@ public class MainCLI {
 
     public void run() {
         instantiate();
-
-        controller.showMainMenu();
+        controller.loadData("src/dataset/NbaSalaryDataset2022-2023.csv"); // verify if the path is correct
 
         boolean userDoesNotWantToExit = true;
 
         while (userDoesNotWantToExit) {
-            int choice = InputReader.readInteger(0, 5);
+            controller.showMainMenu();
+            int choice = InputReader.readIntegerInRange(0, 5);
             switch (choice) {
                 case 1 -> handleFiltering();
                 case 2 -> handleSorting();
@@ -43,13 +44,13 @@ public class MainCLI {
 
     private void handleFiltering() {
         controller.showFilterMenu();
-        String filterChoice = InputReader.readStringChoice(4);
+        String filterChoice = InputReader.readStringFromMenuChoice(4);
 
         switch (filterChoice) {
-//            case "a" ->
-//            case "b" -> Filter.playersByTeam();
-//            case "c" -> Filter.playersByAge();
-//            case "d" -> Filter.playersWithTheSpecifiedScoreRange();
+            case "a" -> controller.showPlayersByPosition(AppPrompter.position());
+            case "b" -> controller.showPlayersByTeam(AppPrompter.stringWithMessage("Team Name: "));
+            case "c" -> controller.showPlayersByAge(AppPrompter.intWithMessage("Age: "));
+            case "d" -> controller.showPlayersBySpecifiedRangeScore(AppPrompter.intWithMessage("Minimum Score: "), AppPrompter.intWithMessage("Maximum Score: "));
         }
     }
 

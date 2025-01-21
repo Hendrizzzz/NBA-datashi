@@ -2,6 +2,7 @@ package controller;
 
 import service.PlayerService;
 import service.TeamService;
+import util.DataReader;
 
 public class MenuController {
     private PlayerService playerService;
@@ -15,6 +16,30 @@ public class MenuController {
         this.playerService = playerService;
         this.teamService = teamService;
     }
+
+
+    public void loadData(String filePath) {
+        DataReader.readData(filePath, playerService, teamService);
+    }
+
+
+    public void showPlayersByPosition(String position) {
+
+    }
+
+    public void showPlayersByTeam(String teamName) {
+
+    }
+
+    public void showPlayersByAge(int age) {
+
+    }
+
+    public void showPlayersBySpecifiedRangeScore(int minScore, int maxScore) {
+
+    }
+
+
 
 
     public void showMainMenu() {
