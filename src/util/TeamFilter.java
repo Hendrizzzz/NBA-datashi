@@ -6,7 +6,7 @@ import model.Team;
 import java.util.List;
 
 public class TeamFilter {
-    public Team getTeamByName(List<Team> teams, String teamName) throws TeamNotFoundException {
+    public static Team getTeamByName(List<Team> teams, String teamName) throws TeamNotFoundException {
         return teams.stream()
                 .filter(t -> t.getName().equalsIgnoreCase(teamName))
                 .findFirst()

@@ -1,12 +1,14 @@
 package service;
 
+import exception.TeamNotFoundException;
 import model.Team;
+import util.TeamFilter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TeamService {
-    private List<Team> teams = new ArrayList<>();
+
+    private List<Team> teams;
 
     public List<Team> getTeams() {
         return teams;
@@ -16,15 +18,10 @@ public class TeamService {
         this.teams = teams;
     }
 
-    public Team findOrAddTeam(String teamName) {
-        for (Team team : teams) {
-            if (team.getName().equals(teamName)) {
-                return team;
-            }
-        }
 
-        Team newTeam = new Team(teamName);
-        teams.add(newTeam);
-        return newTeam;
+    public Team searchTeam(String teamName) throws TeamNotFoundException {
+        return TeamFilter.getTeamByName(teams, teamName);
     }
+
+
 }
