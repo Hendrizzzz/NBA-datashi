@@ -11,6 +11,7 @@ import util.ConsoleDisplayer;
 import util.DataReader;
 
 import java.util.List;
+import java.util.Map;
 
 public class MenuController {
     private PlayerService playerService;
@@ -18,18 +19,24 @@ public class MenuController {
 
     public MenuController() {}
 
+
+
     public MenuController(PlayerService playerService, TeamService teamService) {
         this.playerService = playerService;
         this.teamService = teamService;
     }
 
+
     public void loadData(String filePath) {
         DataReader.readData(filePath, playerService, teamService);
     }
 
+
     // FILTERING
     public void showPlayersByPosition(String position) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mPlayers by Position: " + position + "\u001B[0m");
             List<Player> resultingPlayers = playerService.getPlayersByPosition(position);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
         } catch (PlayerNotFoundException e) {
@@ -37,8 +44,11 @@ public class MenuController {
         }
     }
 
+
     public void showPlayersByTeam(String teamName) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mPlayers by Team: " + teamName + "\u001B[0m");
             List<Player> resultingPlayers = playerService.getPlayerByTeam(teamService.getTeams(), teamName);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
         } catch (TeamNotFoundException e) {
@@ -51,6 +61,8 @@ public class MenuController {
 
     public void showPlayersByAge(int age) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mPlayers by Age: " + age + " years old\u001B[0m");
             List<Player> resultingPlayers = playerService.getPlayersByAge(age);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
         } catch (PlayerNotFoundException e) {
@@ -58,36 +70,54 @@ public class MenuController {
         }
     }
 
+
     public void showPlayersBySpecifiedRangeScore(int minScore, int maxScore) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mPlayers by Score Range: " + minScore + " - " + maxScore + "\u001B[0m");
             List<Player> resultingPlayers = playerService.getPlayersByScoreRange(minScore, maxScore);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
         } catch (PlayerNotFoundException e) {
-            ConsoleDisplayer.displayText("No players found with ppg of: " + maxScore + " - " + minScore);
+            ConsoleDisplayer.displayText("No players found with ppg of: " + minScore + " - " + maxScore);
         }
     }
+
+
+
 
     // SORTING
     public void showSortedPlayersByPpg(boolean isAscending) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            String order = isAscending ? "Ascending" : "Descending";
+            ConsoleDisplayer.displayText("\u001B[1mSorted Players by PPG (" + order + ")\u001B[0m");
             List<Player> resultingPlayers = playerService.getSortedPlayersByPpg(isAscending);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
-        } catch (PlayerNotFoundException _){}
+        } catch (PlayerNotFoundException _) {}
     }
+
 
     public void showSortedPlayersByRpg(boolean isAscending) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            String order = isAscending ? "Ascending" : "Descending";
+            ConsoleDisplayer.displayText("\u001B[1mSorted Players by RPG (" + order + ")\u001B[0m");
             List<Player> resultingPlayers = playerService.getSortedPlayersByRpg(isAscending);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
-        } catch (PlayerNotFoundException _){}
+        } catch (PlayerNotFoundException _) {}
     }
+
 
     public void showSortedPlayersByApg(boolean isAscending) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            String order = isAscending ? "Ascending" : "Descending";
+            ConsoleDisplayer.displayText("\u001B[1mSorted Players by APG (" + order + ")\u001B[0m");
             List<Player> resultingPlayers = playerService.getSortedPlayersByApg(isAscending);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
-        } catch (PlayerNotFoundException _){}
+        } catch (PlayerNotFoundException _) {}
     }
+
 
     public void showSortedPlayersBySpg(boolean isAscending) {
         try {
@@ -96,12 +126,14 @@ public class MenuController {
         } catch (PlayerNotFoundException _){}
     }
 
+
     public void showSortedPlayersByBpg(boolean isAscending) {
         try {
             List<Player> resultingPlayers = playerService.getSortedPlayersByBpg(isAscending);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
         } catch (PlayerNotFoundException _){}
     }
+
 
     public void showSortedPlayersByTpg(boolean isAscending) {
         try {
@@ -110,23 +142,36 @@ public class MenuController {
         } catch (PlayerNotFoundException _){}
     }
 
+
     public void showSortedPlayersBySalary(boolean isAscending) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            String order = isAscending ? "Ascending" : "Descending";
+            ConsoleDisplayer.displayText("\u001B[1mSorted Players by Salary (" + order + ")\u001B[0m");
             List<Player> resultingPlayers = playerService.getSortedPlayersBySalary(isAscending);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
-        } catch (PlayerNotFoundException _){}
+        } catch (PlayerNotFoundException _) {}
     }
+
 
     public void showSortedPlayersByGamesPlayed(boolean isAscending) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            String order = isAscending ? "Ascending" : "Descending";
+            ConsoleDisplayer.displayText("\u001B[1mSorted Players by Games Played (" + order + ")\u001B[0m");
             List<Player> resultingPlayers = playerService.getSortedPlayersByGamesPlayed(isAscending);
             ConsoleDisplayer.displayPlayerList(resultingPlayers);
-        } catch (PlayerNotFoundException _){}
+        } catch (PlayerNotFoundException _) {}
     }
+
+
+
 
     // SEARCHING
     public void searchPlayer(String playerName) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mSearch Player: " + playerName + "\u001B[0m");
             Player player = playerService.searchPlayer(playerName);
             ConsoleDisplayer.displayPlayer(player);
         } catch (PlayerNotFoundException e) {
@@ -134,8 +179,11 @@ public class MenuController {
         }
     }
 
+
     public void searchTeam(String teamName) {
         try {
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mSearch Team: " + teamName + "\u001B[0m");
             Team team = teamService.searchTeam(teamName);
             ConsoleDisplayer.displayTeam(team);
         } catch (TeamNotFoundException e) {
@@ -143,47 +191,88 @@ public class MenuController {
         }
     }
 
+
+
+
+
     // ADVANCED
     public void showMvpLadder() {
         try {
             List<Player> MvpPlayers = playerService.getMvpLadder();
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mNBA Season 2022 - 2023 MVP Ladder\u001B[0m");
             ConsoleDisplayer.displayPlayerList(MvpPlayers);
         } catch (PlayerNotFoundException | InsufficientDataException e) {
             ConsoleDisplayer.displayText(e.getMessage());
         }
     }
 
+
     public void showTeamPayrolls() {
         try {
-            List<Team> team = teamService.getTeamPayroll();
+            List<Team> teams = teamService.getTeamPayroll();
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mNBA Season 2022 - 2023 Teams Payroll\u001B[0m");
+            ConsoleDisplayer.displayTeamsPayroll(teams);
         } catch (TeamNotFoundException e) {
             ConsoleDisplayer.displayText(e.getMessage());
         }
     }
+
 
     public void showBestOffensiveTeams() {
         try {
-            List<Team> team = teamService.getBestOffensiveTeams();
+            List<Team> teams = teamService.getBestOffensiveTeams();
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mNBA Season 2022 - 2023 Best Offensive Teams\u001B[0m");
+            ConsoleDisplayer.displayTeamList(teams);
         } catch (TeamNotFoundException e) {
             ConsoleDisplayer.displayText(e.getMessage());
         }
     }
 
-    public void showAverageSalaryOfPlayers() {
+
+    public void showPositionFrequency() {
+        Map<String, Integer> positionFrequency = playerService.getPositionFrequency();
+        ConsoleDisplayer.displayText("\n");
+        ConsoleDisplayer.displayText("\u001B[1mPosition Frequency\u001B[0m");
+        ConsoleDisplayer.displayMap(positionFrequency, "Position", "Frequency");
     }
 
-    public void showAverageAgeOfPlayers() {
-
-    }
-
-    public void getPositionFrequency() {
-
-    }
 
     public void showAllData() {
-
+        try {
+            List<Player> players = playerService.getAllPlayers();
+            ConsoleDisplayer.displayText("\n");
+            ConsoleDisplayer.displayText("\u001B[1mAll Player Data\u001B[0m");
+            ConsoleDisplayer.displayPlayerList(players);
+        } catch (PlayerNotFoundException _) {}
     }
 
+
+    public void showAverageSalaryOfPlayers() {
+        double averageSalary = playerService.getAverageSalaryOfPlayers();
+        ConsoleDisplayer.displayText("\n");
+        ConsoleDisplayer.displayText("\u001B[1mAverage Salary of Players\u001B[0m");
+        String formattedSalary = String.format("%,.2f", averageSalary).replace(',', ' ');
+        ConsoleDisplayer.displayText(String.format(
+                "The average salary of all NBA players during the 2022-2023 season is: $%s", formattedSalary));
+    }
+
+
+    public void showAverageAgeOfPlayers() {
+        int averageAge = playerService.getAverageAgeOfPlayers();
+        ConsoleDisplayer.displayText("\n");
+        ConsoleDisplayer.displayText("\u001B[1mAverage Age of Players\u001B[0m");
+        ConsoleDisplayer.displayText(String.format(
+                "The average age of all NBA players during the 2022-2023 season is: %d years", averageAge));
+    }
+
+
+
+
+
+    // MENU
     public void showMainMenu() {
         System.out.print("""
                 \n
@@ -196,6 +285,7 @@ public class MenuController {
                 """);
         System.out.print("Enter your choice: ");
     }
+
 
     public void showFilterMenu() {
         System.out.print("""
@@ -257,5 +347,6 @@ public class MenuController {
 
         System.out.print("Enter your choice: ");
     }
+
 
 }

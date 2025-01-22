@@ -3,7 +3,6 @@ package app;
 import controller.MenuController;
 import service.PlayerService;
 import service.TeamService;
-import util.AnalyticsUtils;
 import util.AppPrompter;
 import util.InputReader;
 
@@ -12,12 +11,15 @@ public class MainCLI {
 
     private static MenuController controller;
 
+
+
     private void instantiate() {
         PlayerService playerService = new PlayerService();
         TeamService teamService = new TeamService();
 
         controller = new MenuController(playerService, teamService);
     }
+
 
     public void run() {
         instantiate();
@@ -37,6 +39,7 @@ public class MainCLI {
         }
     }
 
+
     private void handleFiltering() {
         boolean userWantsToFilter = true;
 
@@ -52,6 +55,7 @@ public class MainCLI {
             }
         }
     }
+
 
     private void handleSorting() {
         boolean userWantsToSort = true;
@@ -70,6 +74,7 @@ public class MainCLI {
         }
     }
 
+
     private void handleSearching() {
         boolean userWantsToSearch = true;
 
@@ -84,6 +89,7 @@ public class MainCLI {
         }
     }
 
+
     private void handleAdvancedMetrics() {
         boolean userWantsAdvancedMetrics = true;
 
@@ -96,12 +102,13 @@ public class MainCLI {
                 case "c", "C" -> controller.showBestOffensiveTeams();
                 case "d", "D" -> controller.showAverageSalaryOfPlayers();
                 case "e", "E" -> controller.showAverageAgeOfPlayers();
-                case "f", "F" -> controller.getPositionFrequency();
+                case "f", "F" -> controller.showPositionFrequency();
                 case "g", "G" -> controller.showAllData();
                 case "h", "H" -> userWantsAdvancedMetrics = false;
             }
         }
     }
+
 
     public static void main(String[] args) {
         MainCLI app;

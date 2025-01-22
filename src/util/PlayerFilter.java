@@ -31,8 +31,8 @@ public class PlayerFilter {
     public static List<Player> byScoreRange(List<Player> players, int minScore, int maxScore) {
         return players.stream()
                 .filter(p -> {
-                    double totalScore = p.getGamesPlayed() * p.getPpg();
-                    return totalScore >= minScore && totalScore <= maxScore;
+                    double ppg = p.getPpg();
+                    return ppg >= minScore && ppg <= maxScore;
                 })
                 .toList();
     }

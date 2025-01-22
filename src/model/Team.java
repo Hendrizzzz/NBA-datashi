@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Team {
     private String name;
-    List<Player> players;
+    private List<Player> players;
     private double ppg;
     private double rpg;
     private double asg;
@@ -30,28 +30,28 @@ public class Team {
     }
 
     private void adjustTeamStats() {
-        int numOfPlayers = players.size();
-
         double totalPpg = 0.0;
         double totalRpg = 0.0;
         double totalAsg = 0.0;
         double totalSpg = 0.0;
         double totalTpg = 0.0;
+        double totalGamesPlayed = 82;
 
         for (Player player : players) {
-            totalPpg += player.getPpg();
-            totalRpg += player.getRpg();
-            totalAsg += player.getApg();
-            totalSpg += player.getSpg();
-            totalTpg += player.getTpg();
+            totalPpg += player.getPpg() * player.getGamesPlayed();
+            totalRpg += player.getRpg() * player.getGamesPlayed();
+            totalAsg += player.getApg() * player.getGamesPlayed();
+            totalSpg += player.getSpg() * player.getGamesPlayed();
+            totalTpg += player.getTpg() * player.getGamesPlayed();
         }
 
-        this.ppg = totalPpg / numOfPlayers;
-        this.rpg = totalRpg / numOfPlayers;
-        this.asg = totalAsg / numOfPlayers;
-        this.spg = totalSpg / numOfPlayers;
-        this.tpg = totalTpg / numOfPlayers;
+        this.ppg = totalPpg / totalGamesPlayed;
+        this.rpg = totalRpg / totalGamesPlayed;
+        this.asg = totalAsg / totalGamesPlayed;
+        this.spg = totalSpg / totalGamesPlayed;
+        this.tpg = totalTpg / totalGamesPlayed;
     }
+
 
     public String getName() {
         return name;

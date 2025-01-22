@@ -17,28 +17,28 @@ public class PlayerSorter {
     public static List<Player> sortPlayersByAPG(List<Player> players, boolean isAscending) {
         return players.stream()
                 .sorted(isAscending ? Comparator.comparingDouble(Player::getApg)
-                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                        : Comparator.comparingDouble(Player::getApg).reversed())
                 .toList();
     }
 
     public static List<Player> sortPlayersByRPG(List<Player> players, boolean isAscending) {
         return players.stream()
                 .sorted(isAscending ? Comparator.comparingDouble(Player::getRpg)
-                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                        : Comparator.comparingDouble(Player::getRpg).reversed())
                 .toList();
     }
 
     public static List<Player> sortPlayersBySPG(List<Player> players, boolean isAscending) {
         return players.stream()
                 .sorted(isAscending ? Comparator.comparingDouble(Player::getSpg)
-                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                        : Comparator.comparingDouble(Player::getSpg).reversed())
                 .toList();
     }
 
     public static List<Player> sortPlayersByBPG(List<Player> players, boolean isAscending) {
         return players.stream()
                 .sorted(isAscending ? Comparator.comparingDouble(Player::getBpg)
-                        : Comparator.comparingDouble(Player::getPpg).reversed())
+                        : Comparator.comparingDouble(Player::getBpg).reversed())
                 .toList();
     }
 

@@ -11,6 +11,7 @@ import util.AnalyticsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PlayerService {
     private List<Player> players;
@@ -83,9 +84,24 @@ public class PlayerService {
     }
 
     public List<Player> getMvpLadder() throws PlayerNotFoundException, InsufficientDataException {
-        return AnalyticsUtils.getMVPLadder();
+        return AnalyticsUtils.getMVPLadder(players);
     }
 
-    public List<Player> getAverageAgeOfPlayers() throws PlayerNotFoundException, InsufficientDataException {}
+    public int getAverageAgeOfPlayers() {
+        return AnalyticsUtils.getAverageAgeOfPlayers(players);
+    }
+
+    public double getAverageSalaryOfPlayers() {
+        return AnalyticsUtils.getAverageSalaryOfPlayers(players);
+    }
+
+    public Map<String, Integer> getPositionFrequency() {
+        return AnalyticsUtils.getPositionFrequency(players);
+    }
+
+    public List<Player> getAllPlayers() {
+        return AnalyticsUtils.getAllPlayers(players);
+    }
+
 
 }

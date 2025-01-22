@@ -6,20 +6,16 @@ import java.util.*;
 import java.util.stream.*;
 
 public class AnalyticsUtils {
-    private static List<Team> teams;
 
-    public void LeagueStats(List<Team> teams) {
-        this.teams = teams;
-    }
-
-    public static List<Player> getMVPLadder() {
-        return teams.stream()
-                .flatMap(team -> team.getPlayers().stream())
+    public static List<Player> getMVPLadder(List<Player> players) {
+        return players.stream()
                 .sorted(Comparator.comparingDouble(Player::getPlayerEfficiencyRating).reversed())
+                .limit(10)
                 .collect(Collectors.toList());
     }
 
-    public static List<Team> getPayrollOfEachTeams() {
+
+    public static List<Team> getPayrollOfEachTeams(List<Team> teams) {
         for (Team team : teams) {
             if (team.getPayroll() == 0) {
                 int payroll = team.getPlayers().stream().mapToInt(Player::getSalary).sum();
@@ -31,7 +27,7 @@ public class AnalyticsUtils {
                 .collect(Collectors.toList());
     }
 
-    public static List<Team> getBestOffensiveTeams() {
+    public static List<Team> getBestOffensiveTeams(List<Team> teams) {
         return teams.stream()
                 .sorted((t1, t2) -> Double.compare(
                         t2.getPlayers().stream().mapToDouble(Player::getPpg).sum(),
@@ -40,32 +36,30 @@ public class AnalyticsUtils {
                 .collect(Collectors.toList());
     }
 
-    public static double getAverageAgeOfPlayers() {
-        return teams.stream()
-                .flatMap(team -> team.getPlayers().stream())
+    public static int getAverageAgeOfPlayers(List<Player> players) {
+        return (int) players.stream()
                 .mapToInt(Player::getAge)
                 .average()
                 .orElse(0.0);
     }
 
-    public static double getAverageSalaryOfPlayers() {
-        return teams.stream()
-                .flatMap(team -> team.getPlayers().stream())
+    public static double getAverageSalaryOfPlayers(List<Player> players) {
+        return players.stream()
                 .mapToInt(Player::getSalary)
                 .average()
                 .orElse(0.0);
     }
 
-    public static Map<String, Integer> getPositionFrequency() {
-        return teams.stream()
-                .flatMap(team -> team.getPlayers().stream())
+
+    public static Map<String, Integer> getPositionFrequency(List<Player> players) {
+        return players.stream()
                 .collect(Collectors.groupingBy(Player::getPosition, Collectors.summingInt(p -> 1)));
     }
 
-    public static List<Player> getAllPlayers() {
-        return teams.stream()
-                .flatMap(team -> team.getPlayers().stream())
-                .collect(Collectors.toList());
+
+    public static List<Player> getAllPlayers(List<Player> players) {
+        return new ArrayList<>(players);
     }
+
 }
 

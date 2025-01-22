@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Player {
@@ -33,8 +34,7 @@ public class Player {
             double spg,
             double bpg,
             double tpg,
-            int totalMinutesPlayed,
-            double playerEfficiencyRating
+            int totalMinutesPlayed
     ) {
         this.name = name;
         this.salary = salary;
@@ -50,8 +50,22 @@ public class Player {
         this.bpg = bpg;
         this.tpg = tpg;
         this.totalMinutesPlayed = totalMinutesPlayed;
-        this.playerEfficiencyRating = playerEfficiencyRating;
+        this.playerEfficiencyRating = calculatePer();
     }
+
+    private double calculatePer() {
+        if (gamesPlayed == 0) return 0;
+
+        double weightedPpg = ppg * 0.4;
+        double weightedRpg = rpg * 0.2;
+        double weightedApg = apg * 0.2;
+        double weightedSpg = spg * 0.1;
+        double weightedBpg = bpg * 0.1;
+        double weightedTpg = tpg * -0.1;
+
+        return weightedPpg + weightedRpg + weightedApg + weightedSpg + weightedBpg + weightedTpg;
+    }
+
 
     public int getSalary() {
         return salary;
@@ -111,6 +125,11 @@ public class Player {
 
     public double getTpg() {
         return tpg;
+    }
+
+    public String getFormattedBirthDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
+        return dateFormat.format(this.birthDate);
     }
 
     public void setSalary(int salary) {

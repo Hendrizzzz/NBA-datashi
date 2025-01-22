@@ -33,7 +33,7 @@ public class DataReader {
                 int salary = Integer.parseInt(row[1]);
                 String position = row[2];
                 int age = Integer.parseInt(row[3]);
-                Date birthdate = new SimpleDateFormat(DATE_FORMAT).parse(row[4]); // TODO - Ayusin format ng date
+                Date birthdate = new SimpleDateFormat(DATE_FORMAT).parse(row[4]);
                 String teamName = row[5];
                 byte gamesPlayed = Byte.parseByte(row[6]);
                 double ppg = Double.parseDouble(row[7]);
@@ -44,8 +44,6 @@ public class DataReader {
                 double tpg = Double.parseDouble(row[12]);
                 int tmp = Integer.parseInt(row[13]);
 
-                // TODO - Handle the PlayerEfficiencyRating
-                double per = 0.0;
 
                 // Find or create Team object
                 Team team = teamService.findOrAddTeam(teamName);
@@ -65,8 +63,7 @@ public class DataReader {
                         spg,
                         bpg,
                         tpg,
-                        tmp,
-                        per
+                        tmp
                 );
 
                 // Add player to its team

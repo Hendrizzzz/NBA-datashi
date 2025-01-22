@@ -40,11 +40,13 @@ public class TeamService {
     }
 
     public List<Team> getTeamPayroll() throws TeamNotFoundException {
-        return AnalyticsUtils.getPayrollOfEachTeams();
+        return AnalyticsUtils.getPayrollOfEachTeams(teams);
     }
 
     public List<Team> getBestOffensiveTeams() throws TeamNotFoundException {
-        return AnalyticsUtils.getBestOffensiveTeams();
+        return AnalyticsUtils.getBestOffensiveTeams(teams);
     }
+
+
 
 }
