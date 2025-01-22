@@ -71,7 +71,6 @@ public class MainCLI {
                 case "f", "F" -> userWantsToSort = false;
             }
         }
-
     }
 
     private void handleSearching() {
@@ -88,6 +87,7 @@ public class MainCLI {
         }
     }
 
+    // TODO : finish if the advanced metrics is done
     private void handleAdvancedMetrics() {
         controller.showAdvancedMetricsMenu();
     }
