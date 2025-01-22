@@ -8,17 +8,22 @@ import util.InputReader;
 
 
 
-
 public class MainCLI {
 
     private static MenuController controller;
 
 
 
+    private void instantiate() {
+        PlayerService playerService = new PlayerService();
+        TeamService teamService = new TeamService();
+
+        controller = new MenuController(playerService, teamService);
+    }
+
     public void run() {
         instantiate();
         controller.loadData("src/dataset/NbaSalaryDataset2022-2023.csv"); // verify if the path is correct
-
         boolean userDoesNotWantToExit = true;
 
         while (userDoesNotWantToExit) {
@@ -34,32 +39,53 @@ public class MainCLI {
         }
     }
 
-    private void instantiate() {
-        PlayerService playerService = new PlayerService();
-        TeamService teamService = new TeamService();
-
-        controller = new MenuController(playerService, teamService);
-    }
-
 
     private void handleFiltering() {
-        controller.showFilterMenu();
-        String filterChoice = InputReader.readStringFromMenuChoice(4);
+        boolean userWantsToFilter = true;
 
-        switch (filterChoice) {
-            case "a" -> controller.showPlayersByPosition(AppPrompter.position());
-            case "b" -> controller.showPlayersByTeam(AppPrompter.stringWithMessage("Team Name: "));
-            case "c" -> controller.showPlayersByAge(AppPrompter.intWithMessage("Age: "));
-            case "d" -> controller.showPlayersBySpecifiedRangeScore(AppPrompter.intWithMessage("Minimum Score: "), AppPrompter.intWithMessage("Maximum Score: "));
+        while (userWantsToFilter) {
+            controller.showFilterMenu();
+            String filterChoice = InputReader.readStringFromMenuChoice(5);
+            switch (filterChoice) {
+                case "a", "A" -> controller.showPlayersByPosition(AppPrompter.position());
+                case "b", "B" -> controller.showPlayersByTeam(AppPrompter.stringWithMessage("Team Name: "));
+                case "c", "C" -> controller.showPlayersByAge(AppPrompter.intWithMessage("Age: "));
+                case "d", "D" -> controller.showPlayersBySpecifiedRangeScore(AppPrompter.intWithMessage("Minimum Score: "), AppPrompter.intWithMessage("Maximum Score: "));
+                case "e", "E" -> userWantsToFilter = false;
+            }
         }
     }
 
     private void handleSorting() {
-        controller.showSortMenu();
+        boolean userWantsToSort = true;
+
+        while (userWantsToSort) {
+            controller.showSortMenu();
+            String sortingChoice = InputReader.readStringFromMenuChoice(6);
+            switch (sortingChoice) {
+                case "a", "A" -> controller.showSortedPlayersByPpg(AppPrompter.isAscending());
+                case "b", "B" -> controller.showSortedPlayersByRpg(AppPrompter.isAscending());
+                case "c", "C" -> controller.showSortedPlayersByApg(AppPrompter.isAscending());
+                case "d", "D" -> controller.showSortedPlayersBySalary(AppPrompter.isAscending());
+                case "e", "E" -> controller.showSortedPlayersByGamesPlayed(AppPrompter.isAscending());
+                case "f", "F" -> userWantsToSort = false;
+            }
+        }
+
     }
 
     private void handleSearching() {
-        controller.showSearchMenu();
+        boolean userWantsToSearch = true;
+
+        while (userWantsToSearch) {
+            controller.showSearchMenu();
+            String searchingChoice = InputReader.readStringFromMenuChoice(3);
+            switch (searchingChoice) {
+                case "a", "A" -> controller.searchPlayer(AppPrompter.stringWithMessage("Player Name: "));
+                case "b", "B" -> controller.searchTeam(AppPrompter.stringWithMessage("Team Name: "));
+                case "c", "C" -> userWantsToSearch = false;
+            }
+        }
     }
 
     private void handleAdvancedMetrics() {

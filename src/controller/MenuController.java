@@ -23,6 +23,8 @@ public class MenuController {
     }
 
 
+
+    // FILTERING
     public void showPlayersByPosition(String position) {
 
     }
@@ -38,6 +40,34 @@ public class MenuController {
     public void showPlayersBySpecifiedRangeScore(int minScore, int maxScore) {
 
     }
+
+
+    // SORTING
+    public void showSortedPlayersByPpg(boolean ascending) {
+
+    }
+
+    public void showSortedPlayersByRpg(boolean ascending) {
+    }
+
+    public void showSortedPlayersByApg(boolean ascending) {
+    }
+
+    public void showSortedPlayersBySalary(boolean ascending) {
+    }
+
+    public void showSortedPlayersByGamesPlayed(boolean ascending) {
+    }
+
+
+    // SEARCHING
+    public void searchPlayer(String s) {
+    }
+
+    public void searchTeam(String s) {
+    }
+
+
 
 
 
@@ -60,6 +90,7 @@ public class MenuController {
                 b. By Team
                 c. By Age
                 d. By Players with at least X Points per Game
+                e. Back
                 """);
 
         System.out.print("Enter your filter choice: ");
@@ -74,6 +105,7 @@ public class MenuController {
                 c. By Assists per Game
                 d. By Salary
                 e. By Games Played
+                f. Back
                 """);
 
         System.out.print("Enter your sort choice: ");
@@ -85,6 +117,7 @@ public class MenuController {
                 === Search ===
                 a. By Name (Displays stats: points, rebounds, assists, team, position, etc.)
                 b. By Team (Displays average points, rebounds, and assists per game)
+                c. Back
                 """);
 
         System.out.print("Enter your search choice: ");
@@ -101,6 +134,7 @@ public class MenuController {
                 e. Average Player Salary
                 f. Position Frequency Tally
                 g. Complete Player Stats (2022–2023 Season)
+                h. back
                 """);
 
         System.out.print("Enter your choice: ");

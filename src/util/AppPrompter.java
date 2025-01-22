@@ -1,5 +1,7 @@
 package util;
 
+import java.io.IOException;
+
 public class AppPrompter {
 
     public static String position() {
@@ -17,7 +19,7 @@ public class AppPrompter {
 
     public static int intWithMessage(String prompt) {
         while (true) {
-            System.out.println(prompt);
+            System.out.print(prompt);
             int age = InputReader.readInteger();
 
             if (age < 0)
@@ -33,6 +35,14 @@ public class AppPrompter {
     }
 
 
+    public static boolean isAscending() {
+        while (true) {
+            System.out.print("Sort in Ascending (A) or Descending (D) order? Please type A or D. ");
+            String choice = InputReader.readString();
 
-
+            if (choice.equalsIgnoreCase("A")) return true;
+            else if (choice.equalsIgnoreCase("D")) return false;
+            else System.out.println("Invalid input. Try again.  ");
+        }
+    }
 }
