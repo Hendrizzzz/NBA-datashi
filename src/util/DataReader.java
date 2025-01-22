@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DataReader {
 
@@ -17,16 +19,16 @@ public class DataReader {
 
     public static void readData(String filename, PlayerService playerService, TeamService teamService) {
 
+        List<Player> players = new ArrayList<>();
+        List<Team> teams = new ArrayList<>();
+
         BufferedReader reader = null;
         String line = "";
         try {
             reader = new BufferedReader(new FileReader(filename));
-//            int i = 0; // Used for Debugging
 
             // Skip First Line
             reader.readLine();
-
-            System.out.println("Players: ");
 
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(",");
@@ -51,7 +53,7 @@ public class DataReader {
                 double per = 0.0;
 
                 // Find or create Team object
-                Team team = teamService.findOrAddTeam(teamName);
+                Team team = findOrAddTeam(teamName, teams);
 
                 // Create Player object and link to Team
                 Player player = new Player(
@@ -76,20 +78,12 @@ public class DataReader {
                 team.addPlayer(player);
 
                 // Add player to Player Service
-                playerService.addPlayer(player);
+                players.add(player);
 
-//                // Debugging
-//                System.out.println((i++) + ": " + player);
             }
-//            // Debugging
-//            i = 0;
-//
-//            System.out.println();
-//
-//            System.out.println("Team Names");
-//            for (Team t: teamService.getTeams()) {
-//                System.out.println((i++) + ": " + t.getName());
-//            }
+
+            playerService.setPlayers(players);
+            teamService.setTeams(teams);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -101,6 +95,18 @@ public class DataReader {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static Team findOrAddTeam(String teamName, List<Team> teams) {
+        for (Team team : teams) {
+            if (team.getName().equals(teamName)) {
+                return team;
+            }
+        }
+
+        Team newTeam = new Team(teamName);
+        teams.add(newTeam);
+        return newTeam;
     }
 
 }
