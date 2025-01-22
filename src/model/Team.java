@@ -15,11 +15,40 @@ public class Team {
     public Team(String teamName) {
         this.name = teamName;
         players = new ArrayList<>();
+        ppg = 0.0;
+        rpg = 0.0;
+        asg = 0.0;
+        spg = 0.0;
+        tpg = 0.0;
     }
 
     public void addPlayer(Player player) {
         players.add(player);
-        // TODO - Handle calculations of ppg, rpg, asg, spg, and tpg
+        adjustTeamStats();
+    }
+
+    private void adjustTeamStats() {
+        int numOfPlayers = players.size();
+
+        double totalPpg = 0.0;
+        double totalRpg = 0.0;
+        double totalAsg = 0.0;
+        double totalSpg = 0.0;
+        double totalTpg = 0.0;
+
+        for (Player player : players) {
+            totalPpg += player.getPpg();
+            totalRpg += player.getRpg();
+            totalAsg += player.getApg();
+            totalSpg += player.getSpg();
+            totalTpg += player.getTpg();
+        }
+
+        this.ppg = totalPpg / numOfPlayers;
+        this.rpg = totalRpg / numOfPlayers;
+        this.asg = totalAsg / numOfPlayers;
+        this.spg = totalSpg / numOfPlayers;
+        this.tpg = totalTpg / numOfPlayers;
     }
 
     public String getName() {
@@ -76,5 +105,18 @@ public class Team {
 
     public void setTpg(double tpg) {
         this.tpg = tpg;
+    }
+
+    // TEMPORARY
+    @Override
+    public String toString() {
+        return "Team{" +
+                "name='" + name + '\'' +
+                ", ppg=" + ppg +
+                ", rpg=" + rpg +
+                ", asg=" + asg +
+                ", spg=" + spg +
+                ", tpg=" + tpg +
+                '}';
     }
 }
