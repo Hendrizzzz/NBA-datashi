@@ -174,6 +174,7 @@ public class MenuController {
 
     public void showMainMenu() {
         System.out.print("""
+                \n
                 === Main Menu ===
                 1. Filter Players
                 2. Sort Players
@@ -181,11 +182,13 @@ public class MenuController {
                 4. Advanced Metrics
                 5. Exit
                 """);
+        System.out.print("Enter your choice: ");
     }
 
     public void showFilterMenu() {
-        System.out.println("""
-                === Filter Plpublicayers ===
+        System.out.print("""
+                \n
+                === Filter Players ===
                 a. By Position
                 b. By Team
                 c. By Age
@@ -198,7 +201,8 @@ public class MenuController {
 
 
     public void showSortMenu() {
-        System.out.println("""
+        System.out.print("""
+                \n
                 === Sort Players ===
                 a. By Points per Game
                 b. By Rebounds per Game
@@ -213,7 +217,8 @@ public class MenuController {
 
 
     public void showSearchMenu() {
-        System.out.println("""
+        System.out.print("""
+                \n
                 === Search ===
                 a. By Name (Displays stats: points, rebounds, assists, team, position, etc.)
                 b. By Team (Displays average points, rebounds, and assists per game)
@@ -225,7 +230,8 @@ public class MenuController {
 
 
     public void showAdvancedMetricsMenu() {
-        System.out.println("""
+        System.out.print("""
+                \n
                 === Advanced Metrics ===
                 a. MVP Ladder
                 b. Team Payrolls
