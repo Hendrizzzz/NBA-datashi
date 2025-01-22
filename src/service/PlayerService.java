@@ -7,12 +7,18 @@ import model.Team;
 import util.PlayerFilter;
 import util.PlayerSorter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerService {
     private List<Player> players;
 
+    public void addPlayer(Player player) {
+        if (players == null)
+            players = new ArrayList<>();
 
+        players.add(player);
+    }
 
     public List<Player> getPlayers() {
         return players;

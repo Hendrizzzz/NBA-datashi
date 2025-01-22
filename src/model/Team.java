@@ -19,6 +19,7 @@ public class Team {
 
     public void addPlayer(Player player) {
         players.add(player);
+        // TODO - Handle calculations of ppg, rpg, asg, spg, and tpg
     }
 
     public String getName() {
