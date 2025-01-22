@@ -1,11 +1,13 @@
 package service;
 
+import exception.InsufficientDataException;
 import exception.PlayerNotFoundException;
 import exception.TeamNotFoundException;
 import model.Player;
 import model.Team;
 import util.PlayerFilter;
 import util.PlayerSorter;
+import util.AnalyticsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +82,10 @@ public class PlayerService {
         return PlayerFilter.byName(players, name);
     }
 
+    public List<Player> getMvpLadder() throws PlayerNotFoundException, InsufficientDataException {
+        return AnalyticsUtils.getMVPLadder();
+    }
 
+    public List<Player> getAverageAgeOfPlayers() throws PlayerNotFoundException, InsufficientDataException {}
 
 }

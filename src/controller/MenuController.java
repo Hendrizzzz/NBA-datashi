@@ -1,5 +1,6 @@
 package controller;
 
+import exception.InsufficientDataException;
 import exception.PlayerNotFoundException;
 import exception.TeamNotFoundException;
 import model.Player;
@@ -15,15 +16,12 @@ public class MenuController {
     private PlayerService playerService;
     private TeamService teamService;
 
-    public MenuController() {
-
-    }
+    public MenuController() {}
 
     public MenuController(PlayerService playerService, TeamService teamService) {
         this.playerService = playerService;
         this.teamService = teamService;
     }
-
 
     public void loadData(String filePath) {
         DataReader.readData(filePath, playerService, teamService);
@@ -91,6 +89,27 @@ public class MenuController {
         } catch (PlayerNotFoundException _){}
     }
 
+    public void showSortedPlayersBySpg(boolean isAscending) {
+        try {
+            List<Player> resultingPlayers = playerService.getSortedPlayersBySpg(isAscending);
+            ConsoleDisplayer.displayPlayerList(resultingPlayers);
+        } catch (PlayerNotFoundException _){}
+    }
+
+    public void showSortedPlayersByBpg(boolean isAscending) {
+        try {
+            List<Player> resultingPlayers = playerService.getSortedPlayersByBpg(isAscending);
+            ConsoleDisplayer.displayPlayerList(resultingPlayers);
+        } catch (PlayerNotFoundException _){}
+    }
+
+    public void showSortedPlayersByTpg(boolean isAscending) {
+        try {
+            List<Player> resultingPlayers = playerService.getSortedPlayersByTpg(isAscending);
+            ConsoleDisplayer.displayPlayerList(resultingPlayers);
+        } catch (PlayerNotFoundException _){}
+    }
+
     public void showSortedPlayersBySalary(boolean isAscending) {
         try {
             List<Player> resultingPlayers = playerService.getSortedPlayersBySalary(isAscending);
@@ -124,22 +143,33 @@ public class MenuController {
         }
     }
 
-
     // ADVANCED
     public void showMvpLadder() {
-
+        try {
+            List<Player> MvpPlayers = playerService.getMvpLadder();
+            ConsoleDisplayer.displayPlayerList(MvpPlayers);
+        } catch (PlayerNotFoundException | InsufficientDataException e) {
+            ConsoleDisplayer.displayText(e.getMessage());
+        }
     }
 
     public void showTeamPayrolls() {
-
+        try {
+            List<Team> team = teamService.getTeamPayroll();
+        } catch (TeamNotFoundException e) {
+            ConsoleDisplayer.displayText(e.getMessage());
+        }
     }
 
     public void showBestOffensiveTeams() {
-
+        try {
+            List<Team> team = teamService.getBestOffensiveTeams();
+        } catch (TeamNotFoundException e) {
+            ConsoleDisplayer.displayText(e.getMessage());
+        }
     }
 
     public void showAverageSalaryOfPlayers() {
-
     }
 
     public void showAverageAgeOfPlayers() {
@@ -153,7 +183,6 @@ public class MenuController {
     public void showAllData() {
 
     }
-
 
     public void showMainMenu() {
         System.out.print("""

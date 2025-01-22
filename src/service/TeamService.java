@@ -2,6 +2,7 @@ package service;
 
 import exception.TeamNotFoundException;
 import model.Team;
+import util.AnalyticsUtils;
 import util.TeamFilter;
 
 import java.util.ArrayList;
@@ -34,10 +35,16 @@ public class TeamService {
         this.teams = teams;
     }
 
-
     public Team searchTeam(String teamName) throws TeamNotFoundException {
         return TeamFilter.getTeamByName(teams, teamName);
     }
 
+    public List<Team> getTeamPayroll() throws TeamNotFoundException {
+        return AnalyticsUtils.getPayrollOfEachTeams();
+    }
+
+    public List<Team> getBestOffensiveTeams() throws TeamNotFoundException {
+        return AnalyticsUtils.getBestOffensiveTeams();
+    }
 
 }
