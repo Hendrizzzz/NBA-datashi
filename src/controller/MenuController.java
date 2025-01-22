@@ -29,8 +29,6 @@ public class MenuController {
         DataReader.readData(filePath, playerService, teamService);
     }
 
-
-
     // FILTERING
     public void showPlayersByPosition(String position) {
         try {
@@ -40,7 +38,6 @@ public class MenuController {
             ConsoleDisplayer.displayText("No players found with position: " + position);
         }
     }
-
 
     public void showPlayersByTeam(String teamName) {
         try {
@@ -63,7 +60,6 @@ public class MenuController {
         }
     }
 
-
     public void showPlayersBySpecifiedRangeScore(int minScore, int maxScore) {
         try {
             List<Player> resultingPlayers = playerService.getPlayersByScoreRange(minScore, maxScore);
@@ -72,9 +68,6 @@ public class MenuController {
             ConsoleDisplayer.displayText("No players found with ppg of: " + maxScore + " - " + minScore);
         }
     }
-
-
-
 
     // SORTING
     public void showSortedPlayersByPpg(boolean isAscending) {
@@ -112,9 +105,6 @@ public class MenuController {
         } catch (PlayerNotFoundException _){}
     }
 
-
-
-
     // SEARCHING
     public void searchPlayer(String playerName) {
         try {
@@ -133,8 +123,6 @@ public class MenuController {
             ConsoleDisplayer.displayText(e.getMessage());
         }
     }
-
-
 
 
     // ADVANCED
@@ -165,11 +153,6 @@ public class MenuController {
     public void showAllData() {
 
     }
-
-
-
-
-
 
 
     public void showMainMenu() {

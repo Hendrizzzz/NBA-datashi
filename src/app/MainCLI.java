@@ -3,6 +3,7 @@ package app;
 import controller.MenuController;
 import service.PlayerService;
 import service.TeamService;
+import util.AnalyticsUtils;
 import util.AppPrompter;
 import util.InputReader;
 
@@ -35,7 +36,6 @@ public class MainCLI {
             }
         }
     }
-
 
     private void handleFiltering() {
         boolean userWantsToFilter = true;
@@ -84,12 +84,24 @@ public class MainCLI {
         }
     }
 
-    // TODO : finish if the advanced metrics is done
     private void handleAdvancedMetrics() {
-        controller.showAdvancedMetricsMenu();
+        boolean userWantsAdvancedMetrics = true;
+
+        while (userWantsAdvancedMetrics) {
+            controller.showAdvancedMetricsMenu();
+            String advanceChoice = InputReader.readStringFromMenuChoice(8);
+            switch (advanceChoice) {
+                case "a", "A" -> controller.showMvpLadder();
+                case "b", "B" -> controller.showTeamPayrolls();
+                case "c", "C" -> controller.showBestOffensiveTeams();
+                case "d", "D" -> controller.showAverageSalaryOfPlayers();
+                case "e", "E" -> controller.showAverageAgeOfPlayers();
+                case "f", "F" -> controller.getPositionFrequency();
+                case "g", "G" -> controller.showAllData();
+                case "h", "H" -> userWantsAdvancedMetrics = false;
+            }
+        }
     }
-
-
 
     public static void main(String[] args) {
         MainCLI app;
