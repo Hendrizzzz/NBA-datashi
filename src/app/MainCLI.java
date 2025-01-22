@@ -23,7 +23,7 @@ public class MainCLI {
 
     public void run() {
         instantiate();
-        controller.loadData("src/dataset/NbaSalaryDataset2022-2023.csv"); // verify if the path is correct
+        controller.loadData("src/dataset/NbaSalaryDataset2022-2023.csv.csv");
         boolean userDoesNotWantToExit = true;
 
         while (userDoesNotWantToExit) {

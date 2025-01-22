@@ -1,12 +1,12 @@
 package model;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Player {
-   private String name;
+    private String name;
     private int salary;
     private String position;
-    private SimpleDateFormat birthDate;
+    private Date birthDate;
     private int age;
     private Team team;
     private byte gamesPlayed;
@@ -19,9 +19,38 @@ public class Player {
     private int totalMinutesPlayed;
     private double playerEfficiencyRating;
 
-   public Player(String playerName, Team team) {
-        this.name = playerName;
+    public Player(
+            String name,
+            int salary,
+            String position,
+            Date birthDate,
+            int age,
+            Team team,
+            byte gamesPlayed,
+            double ppg,
+            double rpg,
+            double apg,
+            double spg,
+            double bpg,
+            double tpg,
+            int totalMinutesPlayed,
+            double playerEfficiencyRating
+    ) {
+        this.name = name;
+        this.salary = salary;
+        this.position = position;
+        this.birthDate = birthDate;
+        this.age = age;
         this.team = team;
+        this.gamesPlayed = gamesPlayed;
+        this.ppg = ppg;
+        this.rpg = rpg;
+        this.apg = apg;
+        this.spg = spg;
+        this.bpg = bpg;
+        this.tpg = tpg;
+        this.totalMinutesPlayed = totalMinutesPlayed;
+        this.playerEfficiencyRating = playerEfficiencyRating;
     }
 
     public int getSalary() {
@@ -32,7 +61,7 @@ public class Player {
         return position;
     }
 
-    public SimpleDateFormat getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
@@ -92,14 +121,14 @@ public class Player {
         this.position = position;
     }
 
-    public void setBirthDate(SimpleDateFormat birthDate) {
-        String pattern = "dd-MM-yyyy";
-        this.birthDate = new SimpleDateFormat(pattern);
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
+
     public void setTeam(Team team) {
         this.team = team;
     }
@@ -142,6 +171,28 @@ public class Player {
 
     public void setTpg(double tpg) {
         this.tpg = tpg;
+    }
+
+    // TEMPORARY
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", position='" + position + '\'' +
+                ", birthDate=" + birthDate +
+                ", age=" + age +
+                ", team=" + team +
+                ", gamesPlayed=" + gamesPlayed +
+                ", ppg=" + ppg +
+                ", rpg=" + rpg +
+                ", apg=" + apg +
+                ", spg=" + spg +
+                ", bpg=" + bpg +
+                ", tpg=" + tpg +
+                ", totalMinutesPlayed=" + totalMinutesPlayed +
+                ", playerEfficiencyRating=" + playerEfficiencyRating +
+                '}';
     }
 }
 

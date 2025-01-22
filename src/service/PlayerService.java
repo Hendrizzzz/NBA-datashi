@@ -2,10 +2,11 @@ package service;
 
 import model.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerService {
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
 
     public List<Player> getPlayers() {
         return players;
@@ -15,5 +16,8 @@ public class PlayerService {
         this.players = players;
     }
 
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
 
 }
