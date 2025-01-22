@@ -294,7 +294,7 @@ public class MenuController {
                 a. By Position
                 b. By Team
                 c. By Age
-                d. By Players with at least X Points per Game
+                d. By Players with Points per Game between X and Y
                 e. Back
                 """);
 
