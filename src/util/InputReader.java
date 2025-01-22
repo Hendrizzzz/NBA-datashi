@@ -47,13 +47,12 @@ public class InputReader {
     public static String readStringFromMenuChoice(int numberOfChoicesFromSmallLetterA) {
         while (true)
             try {
-                System.out.print("Enter a choice between 'a' and " + (char) ('a' + numberOfChoicesFromSmallLetterA - 1) + ": ");
                 String input = INPUT_READER.readLine().trim();
 
                 if (input.length() == 1 && input.charAt(0) >= 'a' && input.charAt(0) <= 'a' + numberOfChoicesFromSmallLetterA - 1)
                     return input;
                 else
-                    System.out.println("Invalid input. Please enter a valid choice.");
+                    System.out.println("Invalid input. Please enter a valid choice (between 'a' and " + (char) ('a' + numberOfChoicesFromSmallLetterA - 1) + " only). Try again. ");
 
             } catch (IOException e) {
                 System.out.println("Error: An unexpected issue occurred while reading your input. Please try again.");
