@@ -173,8 +173,6 @@ public class Player {
         this.tpg = tpg;
     }
 
-    // TEMPORARY
-    @Override
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +

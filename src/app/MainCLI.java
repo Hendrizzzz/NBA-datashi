@@ -7,12 +7,9 @@ import util.AppPrompter;
 import util.InputReader;
 
 
-
 public class MainCLI {
 
     private static MenuController controller;
-
-
 
     private void instantiate() {
         PlayerService playerService = new PlayerService();

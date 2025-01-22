@@ -11,6 +11,7 @@ public class Team {
     private double asg;
     private double spg;
     private double tpg;
+    private int payroll;
 
     public Team(String teamName) {
         this.name = teamName;
@@ -20,6 +21,7 @@ public class Team {
         asg = 0.0;
         spg = 0.0;
         tpg = 0.0;
+        payroll = 0;
     }
 
     public void addPlayer(Player player) {
@@ -79,6 +81,14 @@ public class Team {
         return tpg;
     }
 
+    public int getPayroll() {
+        return payroll;
+    }
+
+    public void setPayroll(int payroll) {
+        this.payroll = payroll;
+    }
+
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
@@ -107,11 +117,10 @@ public class Team {
         this.tpg = tpg;
     }
 
-    // TEMPORARY
-    @Override
     public String toString() {
         return "Team{" +
                 "name='" + name + '\'' +
+                ", payroll=" + payroll +
                 ", ppg=" + ppg +
                 ", rpg=" + rpg +
                 ", asg=" + asg +
