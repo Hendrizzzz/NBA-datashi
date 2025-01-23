@@ -100,8 +100,8 @@ public class MainCLI {
                 case "a", "A" -> controller.showMvpLadder();
                 case "b", "B" -> controller.showTeamPayrolls();
                 case "c", "C" -> controller.showBestOffensiveTeams();
-                case "d", "D" -> controller.showAverageSalaryOfPlayers();
-                case "e", "E" -> controller.showAverageAgeOfPlayers();
+                case "d", "D" -> controller.showAverageAgeOfPlayers();
+                case "e", "E" -> controller.showAverageSalaryOfPlayers();
                 case "f", "F" -> controller.showPositionFrequency();
                 case "g", "G" -> controller.showAllData();
                 case "h", "H" -> userWantsAdvancedMetrics = false;
